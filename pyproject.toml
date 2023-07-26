@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "symportal-kitchen"
+version = "0.1.0"
+description = "A collection of functions to maintain SymPortal Web Application and Computation Framework"
+authors = ["greenjune-ship-it <yulia_iakovleva@proton.me>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "symportal_kitchen"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sendgrid = "^6.10.0"
+python-dotenv = "^1.0.0"
+jinja2 = "^3.1.2"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
