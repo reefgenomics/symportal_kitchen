@@ -2,7 +2,8 @@ import logging
 import os
 from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail, Email, Content, TemplateId, Substitution
+from sendgrid.helpers.mail import Mail
+from jinja2 import Environment, FileSystemLoader
 
 # Load environment variables from .env file
 load_dotenv()
@@ -11,10 +12,10 @@ SENDGRID_EMAIL_SENDER = os.environ.get('SENDGRID_EMAIL_SENDER')
 
 
 def read_email_template(template_name):
-    template_file_path = os.path.join(os.path.dirname(__file__), 'templates', template_name)
-    with open(template_file_path, 'r') as file:
-        template_content = file.read()
-    return template_content
+    template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+    env = Environment(loader=FileSystemLoader(template_dir))
+    template = env.get_template(template_name)
+    return template
 
 
 def send_email(to_email, submission_status, from_email=SENDGRID_EMAIL_SENDER):
@@ -26,8 +27,9 @@ def send_email(to_email, submission_status, from_email=SENDGRID_EMAIL_SENDER):
         "submission_status": submission_status
     }
 
-    # Read the email template content from the file
-    template_content = read_email_template('status_update_email_template.html').format(**substitutions)
+    # Read and render the email template
+    template = read_email_template('status_update_email_template.html')
+    template_content = template.render(substitutions)
 
     message = Mail(
         from_email=from_email,
@@ -35,6 +37,9 @@ def send_email(to_email, submission_status, from_email=SENDGRID_EMAIL_SENDER):
         subject=subject,
         html_content=template_content
     )
+
+    # Before sending the email
+    print("Email Content:", template_content)
 
     # Send the email
     try:
