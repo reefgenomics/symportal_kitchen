@@ -1,5 +1,5 @@
-import logging
 import os
+import logging
 from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
@@ -39,9 +39,6 @@ def send_email(to_email, submission_status, from_email=SENDGRID_EMAIL_SENDER):
         subject=subject,
         html_content=template_content,
     )
-
-    # Before sending the email
-    print("Email Content:", template_content)
 
     # Send the email
     try:
