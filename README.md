@@ -5,23 +5,29 @@ Python package as a collection of functions to maintain SymPortal Web Applicatio
 
 ## Get Started
 
-Prepare `.env` file
+Prepare `.env` file:
 
 ```commandline
 SENDGRID_API_KEY=''
 SENDGRID_EMAIL_SENDER=''
 ```
 
-# Code Reformatting and Style Checks
+Run tests:
 
-## Run Formatter
+```commandline
+poetry run pytest --cov=symportal_kitchen tests
+```
+
+## Code Reformatting and Style Checks
+
+### Run Formatter
 
 ```commandline
 poetry run black symportal_kitchen
 poetry run autopep8 --recursive --in-place symportal_kitchen
 ```
 
-## Run Linter
+### Run Linter
 
 ```commandline
 poetry run flake8 symportal_kitchen
@@ -31,9 +37,14 @@ poetry run mypy symportal_kitchen
 
 # Usage
 
-Use the function in Python Console
+Use the function in Python Console:
 
 ```python
-from symportal_kitchen.email_notifications.submission_status_update import send_email
+from symportal_kitchen.email_notifications.submission_status import send_email
+
 send_email('john_doe@company.com', 'test_submission_status')
 ```
+
+# About
+
+The package was written by Yulia Iakovleva [yulia.iakovleva@uni-konstanz.de](yulia.iakovleva@uni-konstanz.de).

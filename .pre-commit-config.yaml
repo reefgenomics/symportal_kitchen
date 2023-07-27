@@ -1,26 +1,21 @@
 # .pre-commit-config.yaml
 repos:
   - repo: https://github.com/psf/black
-    rev: ''
+    rev: '23.7.0'
     hooks:
       - id: black
 
   - repo: https://github.com/pre-commit/mirrors-autopep8
-    rev: ''
+    rev: 'v2.0.2'
     hooks:
       - id: autopep8
 
   - repo: https://github.com/PyCQA/flake8
-    rev: ''
+    rev: '6.0.0'
     hooks:
       - id: flake8
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: ''
+    rev: 'v1.4.1'
     hooks:
       - id: mypy
-
-  - repo: https://github.com/pre-commit/mirrors-pylint
-    rev: ''
-    hooks:
-      - id: pylint
