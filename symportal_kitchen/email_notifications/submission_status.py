@@ -23,7 +23,7 @@ def send_email(to_email, submission_status,
     if recipient_name == '':
         recipient_name = to_email.split("@")[0]
     # Prepare the dynamic content for the email template
-    subject = "Status Update for Your Submission"
+    subject = "SymPortal: Status Update for Your Submission"
     substitutions = {
         "subject": subject,
         "recipient_name": recipient_name,
