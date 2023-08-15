@@ -18,14 +18,15 @@ def read_email_template(template_name):
     return template
 
 
-def send_email(to_email, submission_status, from_email=SENDGRID_EMAIL_SENDER):
+def send_email(to_email, submission_status,
+               recipient_name='', from_email=SENDGRID_EMAIL_SENDER):
+    if recipient_name == '':
+        recipient_name = to_email.split("@")[0]
     # Prepare the dynamic content for the email template
     subject = "Status Update for Your Submission"
     substitutions = {
         "subject": subject,
-        "recipient_name": to_email.split("@")[
-            0
-        ],  # Just using the part before '@' as the recipient name
+        "recipient_name": recipient_name,
         "submission_status": submission_status,
     }
 
